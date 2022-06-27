@@ -44,13 +44,6 @@ const ProductList = ({products, cart, setCart}) => {
                     ))}
                 </tbody>
             </table>
-            {/* <ul>
-                <li className="grid grid-cols-3">
-                    <p>Product</p>
-                    <p>Price</p>
-                </li>
-                
-            </ul> */}
         </div>
     )
 }
