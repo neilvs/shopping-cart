@@ -7,6 +7,7 @@ import ProductList from './components/ProductList';
 
 function App() {
 
+    // load cart from local storage
     const [cart, setCart] = useState(() => {
         try {
             const cart = localStorage.getItem('cart');
@@ -18,15 +19,16 @@ function App() {
 
     // on cart change save to local storage
     useEffect(() => {
-        console.log({cart});
         localStorage.setItem('cart', JSON.stringify(cart));
-
     }, [cart])
 
     return (
-        <div className=" grid grid-cols-2 gap-8">
-            <ProductList products={products} cart={cart} setCart={setCart} />
-            <Cart products={products} cart={cart} setCart={setCart} />
+        <div className='max-w-[1240px] mx-auto mt-8 p-4'>
+            <h1 className='text-center text-3xl font-bold mb-16'>Super Store</h1>
+            <div className="flex flex-col lg:grid grid-cols-2 gap-16">
+                <ProductList products={products} cart={cart} setCart={setCart} />
+                <Cart products={products} cart={cart} setCart={setCart} />
+            </div>
         </div>
     );
 }

@@ -2,7 +2,9 @@
 const ProductList = ({products, cart, setCart}) => {
 
     const handleAddToCart = (product) => {
-        // chekc if it exists in the cart already
+        //Note: Don't save price to cart as the price may change.
+
+        // check if it exists in the cart already
         const existingProduct = cart.find(p => p.name === product.name);
         if (existingProduct) {
             // update the quantity
@@ -15,18 +17,38 @@ const ProductList = ({products, cart, setCart}) => {
 
     return (
         <div>
-            <h1>Products</h1>
-            <ul>
-                {products.map(product => (
-                    <li key={product.name} className="grid grid-cols-3">
-                        <p>{product.name}</p>
-                        <p>{product.price}</p>
-                        <button onClick={() => handleAddToCart(product)}>
-                            Add to cart
-                        </button>
-                    </li>
-                ))}
-            </ul>
+            <h1 className="font-bold text-xl mb-4">Products</h1>
+            <table className="w-full">
+                <thead>
+                    <tr className="text-left font-bold">
+                        <th className="py-2">Product</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {products.map(product => (
+                        <tr key={product.name} className="">
+                            <td className="py-2">{product.name}</td>
+                            <td>${product.price.toFixed(2)}</td>
+                            <td className="text-right">
+                                <button onClick={() => handleAddToCart(product)}
+                                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded text-xs"
+                                >
+                                    Add to cart
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            {/* <ul>
+                <li className="grid grid-cols-3">
+                    <p>Product</p>
+                    <p>Price</p>
+                </li>
+                
+            </ul> */}
         </div>
     )
 }
