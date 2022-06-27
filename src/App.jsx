@@ -3,7 +3,8 @@ import { useState } from 'react';
 import './App.css';
 import Cart from './components/Cart';
 import ProductList from './components/ProductList';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -24,11 +25,19 @@ function App() {
 
     return (
         <div className='max-w-[1240px] mx-auto mt-8 p-4'>
-            <h1 className='text-center text-3xl font-bold mb-16'>Super Store</h1>
-            <div className="flex flex-col lg:grid grid-cols-2 gap-16">
+            <h1 className='text-center text-5xl font-bold mb-16 text-gray-600'>Super Store</h1>
+            <div className="flex flex-col lg:grid grid-cols-2 gap-24">
                 <ProductList products={products} cart={cart} setCart={setCart} />
                 <Cart products={products} cart={cart} setCart={setCart} />
             </div>
+
+            <ToastContainer 
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={true}
+                theme={'colored'}
+            />
+
         </div>
     );
 }

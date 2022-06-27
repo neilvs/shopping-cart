@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 
 const ProductList = ({products, cart, setCart}) => {
 
@@ -13,6 +14,7 @@ const ProductList = ({products, cart, setCart}) => {
             // add it to the cart
             setCart([...cart, {name: product.name, quantity: 1}]);
         }
+        toast.success(`${product.name} added to cart`);
     }
 
     return (

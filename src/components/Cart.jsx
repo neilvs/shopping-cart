@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Cart = ({ products, cart, setCart }) => {
 
@@ -18,6 +19,7 @@ const Cart = ({ products, cart, setCart }) => {
 
     const handleRemoveFromCart = (product) => {
         setCart(cart.filter(p => p.name !== product.name));
+        toast.info(`${product.name} removed from cart`);
     }
 
     return (
