@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { CartItem, Product } from "../types/types";
 
-const Cart = ({ products, cart, setCart }) => {
+const Cart = ({ products, cart, setCart }:{ products: Array<Product>, cart: Array<CartItem>, setCart: React.Dispatch<React.SetStateAction<CartItem[]>> }) => {
 
     const [total, setTotal] = useState(0);
 
@@ -11,13 +12,16 @@ const Cart = ({ products, cart, setCart }) => {
         const total = cart.reduce((acc, product) => {
             // find the product
             const productToAdd = products.find(p => p.name === product.name);
-            return acc + (productToAdd.price * product.quantity);
+            if (productToAdd) {
+                return acc + (productToAdd.price * product.quantity);
+            }
+            return acc;
         }, 0);
         setTotal(total);
     }, [cart, products])
 
 
-    const handleRemoveFromCart = (product) => {
+    const handleRemoveFromCart = (product: CartItem) => {
         setCart(cart.filter(p => p.name !== product.name));
         toast.info(`${product.name} removed from cart`);
     }
@@ -42,6 +46,9 @@ const Cart = ({ products, cart, setCart }) => {
                             {cart.map(item => {
                                 // get the price of this item
                                 const product = products.find(p => p.name === item.name);
+                                if (!product) {
+                                    return null
+                                }
                                 const rowTotal = (product.price * item.quantity).toFixed(2);
 
                                 return (

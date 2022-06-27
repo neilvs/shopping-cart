@@ -1,8 +1,9 @@
 import { toast } from "react-toastify";
+import { Product, CartItem } from "../types/types";
 
-const ProductList = ({products, cart, setCart}) => {
+const ProductList = ({ products, cart, setCart }: { products: Array<Product>, cart: Array<CartItem>, setCart: React.Dispatch<React.SetStateAction<CartItem[]>> }) => {
 
-    const handleAddToCart = (product) => {
+    const handleAddToCart = (product: Product) => {
         //Note: Don't save price to cart as the price may change.
 
         // check if it exists in the cart already

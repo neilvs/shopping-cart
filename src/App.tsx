@@ -5,11 +5,12 @@ import Cart from './components/Cart';
 import ProductList from './components/ProductList';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CartItem, Product } from './types/types';
 
 function App() {
 
     // load cart from local storage
-    const [cart, setCart] = useState(() => {
+    const [cart, setCart] = useState<CartItem[]>(() => {
         try {
             const cart = localStorage.getItem('cart');
             return cart ? JSON.parse(cart) : [];
@@ -45,7 +46,7 @@ function App() {
 export default App;
 
 
-const products = [
+const products: Array<Product> = [
     {
         name: "Sledgehammer",
         price: 125.76
